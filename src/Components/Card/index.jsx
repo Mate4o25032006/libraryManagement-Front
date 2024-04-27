@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
-/**
- * El componente CardLong es un componente de React que representa una tarjeta con una imagen y texto,
- * con la imagen y el texto colocados de manera diferente según la identificación de los datos que se
- * le pasan.
- * @returns un elemento JSX.
- */
-export default function CardLong({data, children}) {
-    return (
-        <div className={`flex flex-wrap-reverse ${data.id_eventos % 2 == 0 ? 'flex-row-reverse' : 'flex-row' } lg:justify-evenly items-center justify-center w-full border-b-2 border-[#14A44D] p-2 mb-4`}>
-            <div className='lg:w-[50%] flex flex-col ml-3'>
-            {children}
-            </div>
-        </div>
-    )
+import Card from 'react-bootstrap/Card';
+
+function CardBook( {data} ) {
+  return (
+    <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>{data.name}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{data.author}</Card.Subtitle>
+        <Card.Text>
+          {data.description}
+        </Card.Text>
+        <Card.Link href="#">{data.numPages}</Card.Link>
+        <Card.Link href="#">{data.availability}</Card.Link>
+      </Card.Body>
+    </Card>
+  );
 }
 
+export default CardBook;
