@@ -1,20 +1,48 @@
 /* eslint-disable react/prop-types */
-import Card from 'react-bootstrap/Card';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
-function CardBook( {data} ) {
+// eslint-disable-next-line no-unused-vars
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
+
+export default function CardBook({ book }) {
+  const card = (
+    <React.Fragment>
+      <CardContent sx={{ maxHeight: '225px', overflow: 'auto' }}>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          {book.category}
+        </Typography>
+        <Typography variant="h5" component="div">
+          {book.name}
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {book.author} - {book.numPages} Páginas
+        </Typography>
+        <Typography variant="body2">
+          {book.description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">{book.availability ? "🟢Disponible" : "🔴No Disponible"}</Button>
+      </CardActions>
+    </React.Fragment>
+  );
+
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>{data.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{data.author}</Card.Subtitle>
-        <Card.Text>
-          {data.description}
-        </Card.Text>
-        <Card.Link href="#">{data.numPages}</Card.Link>
-        <Card.Link href="#">{data.availability}</Card.Link>
-      </Card.Body>
-    </Card>
+    <Box sx={{ maxWidth: 275, maxHeight: 350, overflow: 'hidden' }}>
+      <Card variant="outlined">{card}</Card>
+    </Box>
   );
 }
-
-export default CardBook;
