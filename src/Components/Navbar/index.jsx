@@ -2,37 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import links from './MyLinks';
 
 function NavBar() {
-  const links = [
-    {
-      name : "Inicio",
-      href : "/Inicio",
-      sublinks: []
-    },
-    {
-      name : "Libros",
-      href : "/Libros",
-      sublinks: []
-    },
-    {
-      name : "Categorias",
-      href : "/Categorias",
-      sublinks : [
-        { name: "Aventura", link: "/Categories/aventura" },
-        { name: "Filosofía", link: "/Categories/filosofia" },
-        { name: "Infantil", link: "/Categories/infantil" },
-      ]
-    },
-    {
-      name : "Disponibilidad",
-      href : "/Disponibilidad",
-      sublinks: [
-        { name: "Libros Disponibles", link: "/Disponibilidad/disponibles" },
-        { name: "Libros no Disponibles", link: "/Disponibilidad/no-disponibles" },
-      ]
-    },
-  ];
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">

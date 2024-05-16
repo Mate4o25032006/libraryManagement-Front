@@ -6,6 +6,7 @@ import CatAdventure from "./Pages/CategAdventure"
 import CatPhilosophy from "./Pages/CategPhilosophy"
 import CatChildish from "./Pages/CategChildish"
 import AvailabilityBooks from "./Pages/Availability"
+import NoAvailabilityBooks from "./Pages/NoAvailability"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 
@@ -19,7 +20,8 @@ function App() {
         <Route path="/Categories/aventura" element={<CatAdventure />}/>
         <Route path="/Categories/filosofia" element={<CatPhilosophy />}/>
         <Route path="/Categories/infantil" element={<CatChildish />}/>
-        <Route path="/libros/disponibilidad/disponibles" element={<AvailabilityBooks />}/>
+        <Route path="/libros/Disponibilidad/disponibles" element={<AvailabilityBooks />}/>
+        <Route path="/libros/Disponibilidad/no-disponibles" element={<NoAvailabilityBooks />}/>
       </Routes>
     </Router>
   )
