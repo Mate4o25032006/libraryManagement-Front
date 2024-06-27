@@ -3,13 +3,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import links from './MyLinks';
+import Logo from '../../assets/logo.png'
 
 function NavBar() {
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Logo</Navbar.Brand>
+          <Navbar.Brand>
+            <img
+              src={Logo}
+              width="50"
+              height="50"
+              className="d-inline-block align-top"
+              alt="Logo"
+            />
+          </Navbar.Brand>
           <Nav className="me-auto">
             {links.map(link => {
               if (link.sublinks.length > 0) {
