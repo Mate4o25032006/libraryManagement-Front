@@ -1,23 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../Elements/Inputs";
-import usePostData from "../../../Hooks/usePostData";
+import useLogin from "../../../Hooks/useLogin";
 
-export const FormRegister = () => {
+export const FormLogin = () => {
     const navigate = useNavigate();
-    const data = {userName : "", email : "", password : ""};
+    const data = {email : "", password : ""};
     const [inputs, setInputs] = useState(data);
     const Inputs = [
         {
             id: 1,
-            type: 'text',
-            name: 'userName',
-            placeholder: 'Ingrese un nombre de Usuario',
-            value: data.userName,
-            required: true
-        },
-        {
-            id: 2,
             type: 'text',
             name: 'email',
             placeholder: 'Ingrese su correo',
@@ -25,13 +17,13 @@ export const FormRegister = () => {
             required: true
         },
         {
-            id: 3,
+            id: 2,
             type: 'password',
             name: 'password',
-            placeholder: 'Ingrese su contraseña',
+            placeholder: 'Ingrese la contraseña',
             value: data.password,
             required: true
-        },
+        }
     ];
 
     const handleInputChange = (event) => {
@@ -44,15 +36,15 @@ export const FormRegister = () => {
 
     const onSubmit = () => {
         // envio de datos
-        navigate("/login", { replace: true });
+        navigate("/usuario", { replace: true });
     };
 
-    const handleSubmit = usePostData("register", onSubmit, inputs);
+    const handleSubmit = useLogin("login", onSubmit, inputs);
 
     return (
         <main className="mt-4 flex justify-center">
-            <section className="flex flex-col items-center justify-center bg-slate-200 w-[50%] rounded-lg">
-                <h1 className="text-center my-2 mb-8 text-2xl font-semibold">Registro de Usuarios</h1>
+            <section className="flex flex-col items-center justify-center bg-slate-200 w-[60%] rounded-lg">
+                <h1 className="text-center my-2 mb-8 text-2xl font-semibold">Login de Usuarios</h1>
                 <form  onSubmit={handleSubmit} className= "w-[50%] p-3">
                     {Inputs.map(input => (
                         <Input

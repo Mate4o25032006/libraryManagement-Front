@@ -1,32 +1,40 @@
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useContext } from 'react';
+import { LibraryContext } from '../Context';
 
-const usePostData = (url, onSubmit, inputs) => {
+const useLogin = (url, onSubmit, inputs) => {
+    const navigate = useNavigate();
+    const { setTokenSession } = useContext(LibraryContext); 
+
     const aceptSubmit = async () => {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/${url}`, inputs);
+            const response = await axios.post(`${import.meta.env.VITE_API_AUTH_URL}/${url}`, inputs);
             Swal.fire({
                 title: "¡Bien!",
-                text: "La información ha sido guardada correctamente.",
+                text: "Ha Iniciado Sesión.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 2500,
             }).then(() => {
                 onSubmit();
-                // navigate("/login", {
-                //     replace: true,
-                // });
+                setTokenSession(response.data.accessToken);
+                navigate("/usuario", {
+                    replace: true,
+                });
             });
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: `Parece que hubo un error: por favor verifique los datos.`,
+                text: `Parece que hubo un error: Por favor verifique los datos.`,
                 confirmButtonColor: "#6fc390",
             });
             console.log(error);
         }
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         confirmSubmit();
@@ -42,13 +50,14 @@ const usePostData = (url, onSubmit, inputs) => {
             cancelButtonColor: '#FF4747',
             confirmButtonText: 'Si, estoy seguro!',
             cancelButtonText: 'Cancelar'
-        }
-        ).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-                aceptSubmit()
+                aceptSubmit();
             }
-        })
+        });
     }
-    return handleSubmit
+
+    return handleSubmit;
 };
-export default usePostData;
+
+export default useLogin;

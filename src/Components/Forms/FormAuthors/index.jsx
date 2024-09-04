@@ -3,33 +3,17 @@ import { useNavigate } from "react-router-dom";
 import Input from "../Elements/Inputs";
 import usePostData from "../../../Hooks/usePostData";
 
-export const FormRegister = () => {
+export const FormAuthors = () => {
     const navigate = useNavigate();
-    const data = {userName : "", email : "", password : ""};
+    const data = { name : "" };
     const [inputs, setInputs] = useState(data);
     const Inputs = [
         {
             id: 1,
             type: 'text',
-            name: 'userName',
-            placeholder: 'Ingrese un nombre de Usuario',
-            value: data.userName,
-            required: true
-        },
-        {
-            id: 2,
-            type: 'text',
-            name: 'email',
-            placeholder: 'Ingrese su correo',
-            value: data.email,
-            required: true
-        },
-        {
-            id: 3,
-            type: 'password',
-            name: 'password',
-            placeholder: 'Ingrese su contraseña',
-            value: data.password,
+            name: 'name',
+            placeholder: 'Ingrese el nombre del autor',
+            value: data.name,
             required: true
         },
     ];
@@ -43,11 +27,10 @@ export const FormRegister = () => {
     };
 
     const onSubmit = () => {
-        // envio de datos
-        navigate("/login", { replace: true });
+        navigate("/usuario", { replace: true });
     };
 
-    const handleSubmit = usePostData("register", onSubmit, inputs);
+    const handleSubmit = usePostData("authors", onSubmit, inputs);
 
     return (
         <main className="mt-4 flex justify-center">

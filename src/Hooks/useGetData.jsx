@@ -17,10 +17,9 @@ function useGetData(urls) {
             }, {});
 
             setData(updatedData);
-            console.log(updatedData);
         } catch (error) {
-            console.error('Error fetching data:', error);
-            setData(["Data not found"])
+            console.error('Error al obtener los datos:', error);
+            setData({})
         }
     };
 
