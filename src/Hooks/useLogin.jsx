@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../Helpers/axiosConfig";
 import Swal from "sweetalert2";
 import { useContext } from 'react';
 import { LibraryContext } from '../Context';
@@ -10,7 +10,7 @@ const useLogin = (url, onSubmit, inputs) => {
 
     const aceptSubmit = async () => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_AUTH_URL}/${url}`, inputs);
+            const response = await axiosInstance.post(`${import.meta.env.VITE_API_AUTH_URL}/${url}`, inputs);
             Swal.fire({
                 title: "¡Bien!",
                 text: "Ha Iniciado Sesión.",

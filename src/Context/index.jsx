@@ -5,9 +5,17 @@ export const LibraryContext = createContext();
 
 export function LibraryContextProvider({ children }) {
     const [inputs, setInputs] = useState({});
-    //const [loader, setLoader] = useState(true);
     const [admin, setAdmin] = useState(false)
-    const [tokenSession, setTokenSession] = useState("");
+    const [tokenSession, setTokenSessionState] = useState(localStorage.getItem('authToken'));
+
+    const setTokenSession = (token) => {
+        setTokenSessionState(token);
+        if (token) {
+            localStorage.setItem('authToken', token);
+        } else {
+            localStorage.removeItem('authToken');
+        }
+    };
 
     return (
         <LibraryContext.Provider

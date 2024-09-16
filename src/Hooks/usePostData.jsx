@@ -1,10 +1,10 @@
-import axios from "axios";
+import axiosInstance from "../Helpers/axiosConfig";
 import Swal from "sweetalert2";
 
 const usePostData = (url, onSubmit, inputs) => {
     const aceptSubmit = async () => {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/${url}`, inputs);
+            await axiosInstance.post(`${import.meta.env.VITE_API_URL}/${url}`, inputs);
             Swal.fire({
                 title: "¡Bien!",
                 text: "La información ha sido guardada correctamente.",

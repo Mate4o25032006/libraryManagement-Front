@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axiosInstance from "../Helpers/axiosConfig";
 
 function useGetData(urls) {
     const [data, setData] = useState({});
     const fetchData = async () => {
         try {
             const requests = urls.map(async (url) => {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/${url}`);
+                const response = await axiosInstance.get(`${import.meta.env.VITE_API_URL}/${url}`);
                 return response.data;
             });
 
