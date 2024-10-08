@@ -35,7 +35,6 @@ export const FormLogin = () => {
     };
 
     const onSubmit = () => {
-        // envio de datos
         navigate("/usuario", { replace: true });
     };
 

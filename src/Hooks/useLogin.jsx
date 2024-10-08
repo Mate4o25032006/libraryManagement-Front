@@ -19,7 +19,7 @@ const useLogin = (url, onSubmit, inputs) => {
                 timer: 2500,
             }).then(() => {
                 onSubmit();
-                setTokenSession(response.data.accessToken);
+                setTokenSession(response.data.accessToken); // Establecer el nuevo token
                 navigate("/usuario", {
                     replace: true,
                 });
@@ -33,7 +33,7 @@ const useLogin = (url, onSubmit, inputs) => {
             });
             console.log(error);
         }
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,7 +55,7 @@ const useLogin = (url, onSubmit, inputs) => {
                 aceptSubmit();
             }
         });
-    }
+    };
 
     return handleSubmit;
 };

@@ -7,9 +7,7 @@ export const LoginRoute = ({ children }) => {
     const { tokenSession } = useContext(LibraryContext);
 
     if (tokenSession) {
-        return <Navigate to="/admin" replace />;
-    }else{
-        return <Navigate to="/login" replace />
+        return <Navigate to="/usuario" replace />;
     }
 
     return children;

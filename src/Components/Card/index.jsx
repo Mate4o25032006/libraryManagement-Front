@@ -22,21 +22,18 @@ export default function CardBook({ book }) {
     <React.Fragment>
       <CardContent sx={{ maxHeight: '225px', overflow: 'auto' }}>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {book.category}
+          {book.category.categoryName}
         </Typography>
         <Typography variant="h5" component="div">
           {book.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {book.author} - {book.numPages} Páginas
+          {book.author.name} - {book.numPages} Páginas
         </Typography>
         <Typography variant="body2">
           {book.description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">{book.availability ? "🟢Disponible" : "🔴No Disponible"}</Button>
-      </CardActions>
     </React.Fragment>
   );
 

@@ -1,7 +1,8 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import useGetUser from '../../Hooks/useGetUser';
 import FormCard from '../../Components/FormCard';
-import { useNavigate } from 'react-router-dom';
+import TableBooks from './tableBooks';
+
 
 export const User = () => {
 
@@ -26,13 +27,12 @@ export const User = () => {
         },
     ]
 
-    const navigate = useNavigate();
     const user = useGetUser();
 
     return (
         <>
             {user ?
-                <main className='m-4 p-4 flex items-center justify-center flex-col'>
+                <main className='m-4 p-4 flex items-center justify-center flex-col gap-5'>
                     <h1 className='font-semibold'>Bienvenido al Panel de Usuario</h1>
                     <section className='flex gap-4 mt-4'>
                         {
@@ -46,6 +46,8 @@ export const User = () => {
                             ))
                         }
                     </section>
+
+                    <TableBooks />
                 </main>
                 
             : ""}

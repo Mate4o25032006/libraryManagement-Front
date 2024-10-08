@@ -5,15 +5,15 @@ import usePostData from "../../../Hooks/usePostData";
 
 export const FormCategories = () => {
     const navigate = useNavigate();
-    const data = { category_name : "" };
+    const data = { categoryName : "" };
     const [inputs, setInputs] = useState(data);
     const Inputs = [
         {
             id: 1,
             type: 'text',
-            name: 'category_name',
+            name: 'categoryName',
             placeholder: 'Ingrese el nombre de la categoría',
-            value: data.category_name,
+            value: data.categoryName,
             required: true
         },
     ];

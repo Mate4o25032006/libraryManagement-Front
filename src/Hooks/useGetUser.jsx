@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { LibraryContext } from "../Context";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axiosInstance from "../Helpers/axiosConfig";
 
 const useGetUser = () => {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ const useGetUser = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_AUTH_URL}/users`, {
+                const response = await axiosInstance.get(`${import.meta.env.VITE_API_AUTH_URL}/users`, {
                     headers: {
                         "Authorization": `Bearer ${tokenSession}`
                     }

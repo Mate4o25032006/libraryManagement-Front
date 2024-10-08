@@ -24,7 +24,7 @@ function AppRoutes() {
         { path:"/registro", element: <FormRegister /> },
         { path:"/login", element: <FormLogin /> },
         { path:"/inicio", element: <Home /> },
-        // { path:"/libros", element: <Books /> },
+        { path:"/libros", element: <Books /> },
         // { path:"/Categories/aventura", element: <CatAdventure /> },
         // { path:"/Categories/filosofia", element: <CatPhilosophy /> },
         // { path:"/Categories/infantil", element: <CatChildish /> },
@@ -72,12 +72,13 @@ function AppRoutes() {
 Devuelve código JSX que representa la interfaz de usuario de la aplicación. */
 
 export const AppUi = () => {
-    const { tokenSession } = useContext(LibraryContext)
+    const { tokenSession } = useContext(LibraryContext);
+    const isLoggedIn = !!tokenSession;
 
     return (
         <>
             <BrowserRouter>
-                <NavBar />
+                <NavBar isLoggedIn={isLoggedIn} />
                 <AppRoutes />
             </BrowserRouter>
         </>
