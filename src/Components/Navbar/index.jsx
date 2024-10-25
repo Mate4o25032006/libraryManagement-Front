@@ -36,7 +36,7 @@ function NavBar({ isLoggedIn }) {
                 {/* Links para usuarios logeados */}
                 <Nav.Link href="/usuario">Perfil</Nav.Link>
                 <Nav.Link href="/libros">Libros</Nav.Link>
-                <Nav.Link href="/logout" onClick={handleLogout}>Cerrar sesión</Nav.Link>
+                <Nav.Link href="/login" onClick={handleLogout}>Cerrar sesión</Nav.Link>
               </>
             ) : (
               <>
@@ -56,11 +56,15 @@ function NavBar({ isLoggedIn }) {
                     );
                   }
                 })}
-                <Nav.Link href="/login">Iniciar sesión</Nav.Link>
-                <Nav.Link href="/registro">Registrarse</Nav.Link>
               </>
             )}
           </Nav>
+          {!isLoggedIn && (
+            <Nav className="ms-auto">
+              <Nav.Link href="/login">Iniciar sesión</Nav.Link>
+              <Nav.Link href="/registro">Registrarse</Nav.Link>
+            </Nav>
+          )}
         </Container>
       </Navbar>
     </>

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../Elements/Inputs";
 import usePostData from "../../../Hooks/usePostData";
+import Input from "../Elements/Inputs";
+import { Forms } from "../../../Layout/Forms";
 
 export const FormAuthors = () => {
     const navigate = useNavigate();
-    const data = { name : "" };
+    const data = { name: "" };
     const [inputs, setInputs] = useState(data);
     const Inputs = [
         {
@@ -19,7 +20,6 @@ export const FormAuthors = () => {
     ];
 
     const handleInputChange = (event) => {
-        console.log(event.target.value);
         setInputs({
             ...inputs,
             [event.target.name]: event.target.value,
@@ -33,24 +33,23 @@ export const FormAuthors = () => {
     const handleSubmit = usePostData("authors", onSubmit, inputs);
 
     return (
-        <main className="mt-4 flex justify-center">
-            <section className="flex flex-col items-center justify-center bg-slate-200 w-[50%] rounded-lg">
-                <h1 className="text-center my-2 mb-8 text-2xl font-semibold">Registro de Autores</h1>
-                <form  onSubmit={handleSubmit} className= "w-[50%] p-3">
-                    {Inputs.map(input => (
-                        <Input
-                            key={input.id}
-                            type={input.type}
-                            name={input.name}
-                            placeholder={input.placeholder}
-                            handleInputChange={handleInputChange}
-                        />
-                    ))}
-                    <button onClick={handleSubmit} type='submit' className="py-2 px-4 mt-3 rounded-lg bg-[#14a44e76] ">
-                        Enviar
-                    </button>
-                </form>
-            </section>
-        </main>
+        <Forms>
+            <h1 className="text-center my-2 mb-8 text-3xl font-semibold text-[#14a44e]">Registro de Autores</h1>
+            <form onSubmit={handleSubmit} className="w-full space-y-6">
+                {Inputs.map(input => (
+                    <Input
+                        key={input.id}
+                        type={input.type}
+                        name={input.name}
+                        placeholder={input.placeholder}
+                        handleInputChange={handleInputChange}
+                        className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#14a44e]"
+                    />
+                ))}
+                <button onClick={handleSubmit} type='submit' className="w-full py-3 px-4 mt-4 rounded-lg bg-[#14a44e] text-white text-lg font-semibold shadow-md hover:bg-[#0f8a39] transition duration-300">
+                    Enviar
+                </button>
+            </form>
+        </Forms>        
     );
 };

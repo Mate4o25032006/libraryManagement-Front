@@ -23,7 +23,7 @@ function Home() {
                 </ul>
 
                 <button className="mt-4 px-6 py-2 text-white bg-[#14A44D] rounded" >
-                    <Link to="/libros">
+                    <Link to="/registro">
                         Comienza a explorar
                     </Link>
                 </button>

@@ -9,9 +9,7 @@ export const FormBooks = () => {
     const navigate = useNavigate();
     const { authors, categories } = useGetData(["authors", "categories"]);
 
-
-
-    const initialData = { name: "", description: "", num_pages: "", authorId: "", categoryId: "" };
+    const initialData = { name: "", description: "", numPages: "", authorId: "", categoryId: "" };
     const [inputs, setInputs] = useState(initialData);
     const Inputs = [
         {
@@ -33,9 +31,9 @@ export const FormBooks = () => {
         {
             id: 3,
             type: 'number',
-            name: 'num_pages',
+            name: 'numPages',
             placeholder: 'Ingrese la cantidad de páginas',
-            value: inputs.num_pages,
+            value: inputs.numPages,
             required: true
         },
     ];

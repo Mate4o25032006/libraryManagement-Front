@@ -1,14 +1,9 @@
 const links = [
-    {
-      name : "Inicio",
-      href : "/Inicio",
-      sublinks: []
-    },
-    {
-      name : "Libros",
-      href : "/Libros",
-      sublinks: []
-    },
+  {
+    name : "Inicio",
+    href : "/Inicio",
+    sublinks: []
+  },
 ];
 
 export default links;
