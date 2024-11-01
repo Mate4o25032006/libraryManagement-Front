@@ -8,6 +8,7 @@ import links from './MyLinks';
 import Logo from '../../assets/logo.png';
 import { LibraryContext } from '../../Context';
 
+// eslint-disable-next-line react/prop-types
 function NavBar({ isLoggedIn }) {
   const navigate = useNavigate();
   const { setTokenSession } = useContext(LibraryContext);
@@ -30,12 +31,10 @@ function NavBar({ isLoggedIn }) {
               alt="Logo"
             />
           </Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             {isLoggedIn ? (
               <>
                 {/* Links para usuarios logeados */}
-                <Nav.Link href="/usuario">Perfil</Nav.Link>
-                <Nav.Link href="/libros">Libros</Nav.Link>
                 <Nav.Link href="/login" onClick={handleLogout}>Cerrar sesión</Nav.Link>
               </>
             ) : (

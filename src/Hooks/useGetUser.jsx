@@ -6,8 +6,8 @@ import axiosInstance from "../Helpers/axiosConfig";
 
 const useGetUser = () => {
     const navigate = useNavigate();
-    const { tokenSession, setAdmin } = useContext(LibraryContext);
-    const [adminSession, setAdminSession] = useState();
+    const { tokenSession, setUser } = useContext(LibraryContext);
+    const [userSession, setUserSession] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,8 +17,8 @@ const useGetUser = () => {
                         "Authorization": `Bearer ${tokenSession}`
                     }
                 });
-                setAdmin(true);
-                setAdminSession(true);
+                setUser(true);
+                setUserSession(true);
                 console.log(response);
             } catch (error) {
                 console.log(error);
@@ -29,8 +29,8 @@ const useGetUser = () => {
                     showConfirmButton: false,
                     timer: 2500,
                 }).then(() => {
-                    setAdmin(false);
-                    setAdminSession(false);
+                    setUser(false);
+                    setUserSession(false);
                     navigate("/login", {
                         replace: true
                     });
@@ -38,8 +38,8 @@ const useGetUser = () => {
             }
         };
         fetchData();
-    }, [tokenSession, setAdmin, navigate]); 
-    return adminSession;
+    }, [tokenSession, setUser, navigate]); 
+    return userSession;
 };
 
 export default useGetUser;

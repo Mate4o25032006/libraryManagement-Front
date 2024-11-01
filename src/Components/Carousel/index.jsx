@@ -3,20 +3,16 @@ import items from './MyItems';
 
 function InfoCarousel() {
     return (
-        <Carousel data-bs-theme="white" className='w-50 '>
-          {items.map(item => (
-              <Carousel.Item key={item.id}>
-                  <img
-                      className="d-block w-100"
-                      src={item.image}
-                      alt={item.title}
-                  />
-                  <Carousel.Caption className="bg-black/50 p-4 rounded">
-                      <h5 className='text-white font-bold text-2xl mb-2'>{item.title}</h5>
-                      <p className="text-white text-lg">{item.paragraph}</p>
-                  </Carousel.Caption>
-              </Carousel.Item>
-          ))}
+        <Carousel fade data-bs-theme="white" className="w-50">
+            {items.map(item => (
+                <Carousel.Item key={item.id} interval={3000}>
+                    <img className="d-block w-100 rounded-lg" src={item.image} alt={item.title} />
+                    <Carousel.Caption className="carousel-caption">
+                        <h5>{item.title}</h5>
+                        <p>{item.paragraph}</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            ))}
         </Carousel>
     );
 }

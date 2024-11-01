@@ -11,24 +11,30 @@ const useLogin = (url, onSubmit, inputs) => {
     const aceptSubmit = async () => {
         try {
             const response = await axiosInstance.post(`${import.meta.env.VITE_API_AUTH_URL}/${url}`, inputs);
+            
+            // Guarda el token en el contexto y en localStorage
+            setTokenSession(response.data.accessToken);
+            console.log(response.data.accessToken);
+            
+            
+            // Redirige al usuario antes de mostrar la alerta
+            navigate("/usuario", { replace: true });
+
+            // Lanza la alerta de éxito
             Swal.fire({
                 title: "¡Bien!",
                 text: "Ha Iniciado Sesión.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 2500,
-            }).then(() => {
-                onSubmit();
-                setTokenSession(response.data.accessToken); // Establecer el nuevo token
-                navigate("/usuario", {
-                    replace: true,
-                });
             });
+
+            onSubmit();
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: `Parece que hubo un error: Por favor verifique los datos.`,
+                text: "Parece que hubo un error: Por favor verifique los datos.",
                 confirmButtonColor: "#6fc390",
             });
             console.log(error);
@@ -48,7 +54,7 @@ const useLogin = (url, onSubmit, inputs) => {
             showCancelButton: true,
             confirmButtonColor: '#6fc390',
             cancelButtonColor: '#FF4747',
-            confirmButtonText: 'Si, estoy seguro!',
+            confirmButtonText: 'Sí, estoy seguro!',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {

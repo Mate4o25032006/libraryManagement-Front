@@ -1,36 +1,52 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
+import * as jwtDecode from 'jwt-decode';
+
 
 export const LibraryContext = createContext();
 
 export function LibraryContextProvider({ children }) {
     const [inputs, setInputs] = useState({});
-    const [admin, setAdmin] = useState(false);
+    const [user, setUser] = useState(false);
     const [tokenSession, setTokenSessionState] = useState(localStorage.getItem('authToken'));
 
+
+    // Verificar expiración del token
+    const isTokenExpired = (token) => {
+        try {
+            const decoded = jwtDecode.default(token); // Llama al método `.default`
+            return decoded.exp * 1000 < Date.now(); // Co mparar tiempo de expiración en ms
+        } catch (e) {
+            return true;
+        }
+    };
+
     const setTokenSession = (token) => {
+        console.log("Token recibido en setTokenSession:", token); // Verifica el token recibido
         setTokenSessionState(token);
         if (token) {
             localStorage.setItem('authToken', token);
         } else {
             localStorage.removeItem('authToken');
         }
-    };
+    };  
 
-    // Escuchar cuando el token cambia y eliminarlo si está vacío o ha expirado
+
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        if (!token) {
-            setTokenSession(null); // Asegurarse de que el estado también se limpie
+        
+        if (!token || isTokenExpired(token)) {
+            setTokenSession(null); 
         }
-    }, [tokenSession]);
+    }, []);
 
     return (
         <LibraryContext.Provider
             value={{
                 inputs,
                 setInputs,
-                admin,
-                setAdmin,
+                user,
+                setUser,
                 tokenSession,
                 setTokenSession,
             }}
